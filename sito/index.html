@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bassa Marea RP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--m:#3b2418;--m2:#2a190f;--m3:#1e130c;--a:#f08a3c;--c:#ffd38a;--cc:#f3dcc0;--r:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;background:var(--m3);color:var(--cc);line-height:1.6}
+a{color:var(--a)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* barra */
+header{position:sticky;top:0;z-index:20;background:#1e130cee;backdrop-filter:blur(8px);border-bottom:1px solid #f08a3c33}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-weight:900;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--c);text-decoration:none;white-space:nowrap}
+.logo span{color:var(--a)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:var(--cc);text-decoration:none;font-weight:800;font-size:14px;padding:8px 12px;border-radius:10px}
+nav a:hover,nav a.on{background:var(--m);color:var(--c)}
+.menu{display:none;background:none;border:0;color:var(--c);font-size:26px;cursor:pointer}
+@media(max-width:820px){nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--m3);flex-direction:column;padding:10px 16px;border-bottom:1px solid #f08a3c33}nav.aperto{display:flex}.menu{display:block}}
+/* sezioni */
+section{display:none;padding:56px 0 80px}
+section.on{display:block;animation:entra .35s ease}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1,h2,h3{color:var(--c);font-weight:900;line-height:1.15;margin:0 0 14px}
+h2{font-size:34px}h3{font-size:21px}
+h2 span,h1 span{color:var(--a)}
+.sotto{color:var(--a);font-weight:900;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin-bottom:8px}
+p{margin:0 0 14px}
+/* home */
+.hero{position:relative;min-height:calc(100vh - 64px);display:flex;align-items:center;overflow:hidden;padding:0}
+.hero .cielo{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 20%,#f08a3c55,transparent 55%),linear-gradient(180deg,#2a190f 0%,#3b2418 55%,#1e130c 100%)}
+.hero .sole{position:absolute;right:12%;top:18%;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#ffd38a,#f08a3c 70%);box-shadow:0 0 120px #f08a3c88;opacity:.9}
+.hero svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:38%}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(46px,9vw,104px);letter-spacing:4px;text-transform:uppercase;text-shadow:0 6px 30px #000a;margin-bottom:10px}
+.hero .frase{font-size:clamp(17px,2.3vw,22px);max-width:560px;font-weight:700;color:var(--cc)}
+.bottoni{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font:900 16px Nunito,sans-serif;padding:14px 26px;border-radius:12px;background:var(--c);color:var(--m);transition:transform .15s,background .15s}
+.btn:hover{background:var(--a);transform:translateY(-2px)}
+.btn.vuoto{background:transparent;color:var(--c);border:2px solid var(--c)}
+.btn.vuoto:hover{background:var(--c);color:var(--m)}
+.punti{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+.carta{background:var(--m);border:1px solid #f08a3c33;border-radius:var(--r);padding:22px}
+.carta .ico{font-size:30px;margin-bottom:6px}
+.carta h3{font-size:18px;margin-bottom:6px}
+.carta p{margin:0;font-size:15px}
+.fascia{background:var(--m2);padding:56px 0;border-top:1px solid #f08a3c22;border-bottom:1px solid #f08a3c22}
+/* regolamento */
+.regole{display:grid;grid-template-columns:240px 1fr;gap:34px;align-items:start}
+.indice{position:sticky;top:84px;background:var(--m);border-radius:var(--r);padding:16px;border:1px solid #f08a3c33}
+.indice a{display:block;color:var(--cc);text-decoration:none;font-weight:800;font-size:14px;padding:6px 8px;border-radius:8px}
+.indice a:hover{background:#f08a3c22;color:var(--c)}
+.capitolo{background:var(--m);border-radius:var(--r);padding:26px;margin-bottom:18px;border:1px solid #f08a3c22;scroll-margin-top:84px}
+.capitolo ol{margin:0;padding-left:22px}.capitolo li{margin-bottom:10px}
+.capitolo b{color:var(--c)}
+.nota{background:#f08a3c1a;border-left:4px solid var(--a);padding:12px 16px;border-radius:8px;margin:14px 0;font-size:15px}
+@media(max-width:820px){.regole{grid-template-columns:1fr}.indice{position:static}}
+/* sanzioni */
+.scala{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.scala div{background:var(--m3);border-radius:10px;padding:12px;text-align:center;font-weight:800}
+.scala b{display:block;font-size:22px;color:var(--a)}
+/* città */
+.griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.tag{display:inline-block;font-size:12px;font-weight:900;padding:3px 10px;border-radius:20px;background:#f08a3c22;color:var(--a);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.tag.ill{background:#e2553a22;color:#ff8a6a}
+/* candidatura */
+form{background:var(--m);border-radius:var(--r);padding:26px;border:1px solid #f08a3c33}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{display:flex;flex-direction:column;gap:6px}.campo.largo{grid-column:1/-1}
+label{font-weight:900;font-size:13px;color:var(--a);text-transform:uppercase;letter-spacing:1px}
+input,select,textarea{background:var(--m3);border:2px solid #f08a3c33;border-radius:10px;padding:12px;color:var(--c);font:700 15px Nunito,sans-serif;outline:none}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--a)}
+@media(max-width:640px){.campi{grid-template-columns:1fr}}
+#esito{display:none;margin-top:20px}
+#esito pre{white-space:pre-wrap;background:var(--m3);border-radius:10px;padding:16px;font:600 14px/1.5 Nunito,sans-serif;color:var(--cc);max-height:340px;overflow:auto;border:1px solid #f08a3c33}
+.errore{color:#ff8a6a;font-weight:800;margin-top:10px;min-height:22px}
+/* staff/faq */
+details{background:var(--m);border-radius:12px;padding:16px 20px;margin-bottom:10px;border:1px solid #f08a3c22}
+summary{cursor:pointer;font-weight:900;color:var(--c);font-size:17px}
+details p{margin:10px 0 0}
+.stato{display:flex;align-items:center;gap:12px;background:var(--m);border-radius:var(--r);padding:20px;border:1px solid #f08a3c33}
+.pallino{width:14px;height:14px;border-radius:50%;background:#c9a24a;box-shadow:0 0 12px #c9a24a}
+footer{border-top:1px solid #f08a3c22;padding:26px 0;font-size:13px;opacity:.7;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#home">Bassa <span>Marea</span> RP</a>
+  <button class="menu" id="menu" aria-label="Menu">☰</button>
+  <nav id="nav">
+    <a href="#home">Home</a><a href="#regolamento">Regolamento</a><a href="#citta">La città</a><a href="#candidatura">Candidati</a><a href="#staff">Staff e FAQ</a>
+  </nav>
+</div></header>
+
+<!-- HOME -->
+<section id="v-home" class="hero">
+  <div class="cielo"></div><div class="sole"></div>
+  <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#3b2418" d="M0 160 C240 110 480 210 720 170 C960 130 1200 200 1440 150 L1440 320 L0 320Z"/><path fill="#2a190f" d="M0 220 C260 180 500 260 760 225 C1020 190 1240 250 1440 215 L1440 320 L0 320Z"/><path fill="#1e130c" d="M0 270 C300 245 560 300 820 275 C1080 250 1280 290 1440 270 L1440 320 L0 320Z"/></svg>
+  <div class="wrap">
+    <div class="sotto">Server FiveM · Roleplay italiano serio</div>
+    <h1>Bassa <span>Marea</span></h1>
+    <p class="frase">Una città piccola, dove ogni azione conta. Niente comandi magici, niente puntini sulla mappa: solo persone, storie e conseguenze.</p>
+    <div class="bottoni"><a class="btn" href="#candidatura">Candidati</a><a class="btn vuoto" id="btn-discord" href="#staff">Entra su Discord</a></div>
+  </div>
+</section>
+<section id="v-home2" class="fascia" style="display:none"></section>
+
+<!-- REGOLAMENTO -->
+<section id="v-regolamento"><div class="wrap">
+  <div class="sotto">Leggilo tutto: lo chiediamo al colloquio</div>
+  <h2>Regola<span>mento</span></h2>
+  <p>Entrando a Bassa Marea accetti queste regole. Lo staff può intervenire anche su situazioni non scritte qui, se rovinano il gioco agli altri.</p>
+  <div class="regole">
+    <div class="indice">
+      <a href="#regolamento" data-cap="r1">1. Regole base</a><a href="#regolamento" data-cap="r2">2. Il personaggio</a><a href="#regolamento" data-cap="r3">3. Crimine</a><a href="#regolamento" data-cap="r4">4. Polizia e giustizia</a><a href="#regolamento" data-cap="r5">5. Morte, coma e permadeath</a><a href="#regolamento" data-cap="r6">6. Comunicazioni</a><a href="#regolamento" data-cap="r7">7. Sanzioni</a>
+    </div>
+    <div>
+      <div class="capitolo" id="r1"><h3>1. Regole base</h3><ol>
+        <li><b>Resta sempre nel personaggio.</b> Fuori dal gioco si parla solo su Discord o nei ticket, mai in città.</li>
+        <li><b>Niente metagaming:</b> non usare in gioco informazioni prese fuori dal gioco (stream, Discord, chiamate vocali esterne).</li>
+        <li><b>Niente powergaming:</b> non forzare azioni impossibili o che non lasciano scelta agli altri.</li>
+        <li><b>Niente RDM / VDM:</b> non si uccide o investe nessuno senza un motivo di gioco costruito prima.</li>
+        <li><b>Valuta la tua vita:</b> con una pistola puntata addosso ti comporti come una persona vera.</li>
+        <li><b>Niente bug, mod o trucchi.</b> Se trovi un bug, aprilo in ticket: non usarlo.</li>
+        <li>Rispetto per tutti fuori dal gioco. Nessuna discriminazione, mai.</li>
+      </ol></div>
+      <div class="capitolo" id="r2"><h3>2. Il personaggio</h3><ol>
+        <li>Nome e cognome <b>realistici</b>. Niente nomi di personaggi famosi o nomi scherzo.</li>
+        <li>Massimo <b>3 personaggi</b> per persona. I tuoi personaggi non si conoscono e non si passano soldi o oggetti.</li>
+        <li>Il nome si cambia solo tramite ticket allo staff.</li>
+        <li>La storia del personaggio si scrive alla creazione: lo staff la legge e può usarla per creare scene.</li>
+      </ol></div>
+      <div class="capitolo" id="r3"><h3>3. Crimine</h3><ol>
+        <li>Ogni colpo richiede <b>poliziotti in servizio</b> (il server lo controlla da solo).</li>
+        <li>Massimo <b>2 persone</b> sul posto per colpo, e mai più dei poliziotti in servizio.</li>
+        <li>Gli <b>ostaggi</b> devono essere una scena, non uno scudo: niente ostaggi "amici" messi d'accordo.</li>
+        <li>Dopo un colpo, aspetta prima del successivo: il ritmo lo dà la città, non la fretta.</li>
+        <li>Niente crimine contro chi è appena entrato in città (prime 2 ore di gioco).</li>
+      </ol>
+      <div class="nota">I posti dove si commettono reati non sono segnati sulla mappa. Si scoprono parlando con le persone giuste.</div></div>
+      <div class="capitolo" id="r4"><h3>4. Polizia e giustizia</h3><ol>
+        <li>Gli agenti seguono una scala di forza realistica: parole, poi fermo, poi armi.</li>
+        <li>Ogni arresto passa dalla centrale: foto, impronte, verbale.</li>
+        <li>Pene, cauzioni e mandati li decidono i <b>giudici</b>. Gli avvocati possono incontrare i clienti in carcere.</li>
+        <li>Le stelle di ricercato le dà solo lo staff, per scene concordate.</li>
+      </ol></div>
+      <div class="capitolo" id="r5"><h3>5. Morte, coma e permadeath</h3><ol>
+        <li>Quando vai a terra e nessuno ti cura, vai in <b>coma per 24 ore</b>: dimentichi la scena che ti ha portato lì.</li>
+        <li>Durante la convalescenza niente colpi né vendette.</li>
+        <li>La <b>morte definitiva</b> (permadeath) avviene solo dopo un ticket e con il consenso dello staff.</li>
+      </ol></div>
+      <div class="capitolo" id="r6"><h3>6. Comunicazioni</h3><ol>
+        <li>In città si parla con la voce del gioco e con il telefono del personaggio.</li>
+        <li>La radio funziona solo se il personaggio ce l'ha davvero in tasca.</li>
+        <li>Niente chiamate vocali esterne tra persone in scena diverse.</li>
+      </ol></div>
+      <div class="capitolo" id="r7"><h3>7. Sanzioni</h3>
+        <p>Le sanzioni crescono a ogni violazione. Lo staff può saltare passaggi per i casi gravi.</p>
+        <div class="scala"><div><b>1</b>Avviso</div><div><b>2</b>Kick</div><div><b>3</b>Ban 3 giorni</div><div><b>4</b>Ban 14 giorni</div><div><b>5</b>Ban definitivo</div></div>
+        <div class="nota">Per contestare una sanzione apri un ticket su Discord. Non se ne discute in città.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CITTÀ -->
+<section id="v-citta"><div class="wrap">
+  <div class="sotto">Cosa puoi fare a Bassa Marea</div>
+  <h2>La <span>città</span></h2>
+  <p>Ogni azione si fa guardando le cose e le persone: l'occhiolino ti mostra cosa puoi fare. Nessun puntino sulla mappa: la città la impari girandola.</p>
+  <h3 style="margin-top:30px">Lavori legali</h3>
+  <div class="griglia">
+    <div class="carta"><span class="tag">Servizio</span><h3>Polizia</h3><p>Centrale di Mission Row con celle vere, armeria, armadietti, badge con gradi e porte riservate.</p></div>
+    <div class="carta"><span class="tag">Servizio</span><h3>Medici</h3><p>Pillbox Hospital: cure, ferite, coma. Senza di loro la città si ferma.</p></div>
+    <div class="carta"><span class="tag">Giustizia</span><h3>Avvocati e giudici</h3><p>Colloqui in carcere, parcelle, mandati, sentenze, cauzioni e braccialetti elettronici.</p></div>
+    <div class="carta"><span class="tag">Lavoro</span><h3>Meccanici</h3><p>Riparazioni, ricambi, carro attrezzi e deposito veicoli.</p></div>
+    <div class="carta"><span class="tag">Lavoro</span><h3>Locali e negozi</h3><p>Ristoranti, bar e negozi gestiti dai giocatori, con cassa e scorte.</p></div>
+    <div class="carta"><span class="tag">Lavoro</span><h3>Mare e mestieri</h3><p>Sub e tesori sul fondale, pesca, metal detector, rottame, fonderia.</p></div>
+    <div class="carta"><span class="tag">Lavoro</span><h3>Giornale</h3><p>Fai foto in città e vendile alla redazione. Le notizie le scrivete voi.</p></div>
+  </div>
+  <h3 style="margin-top:34px">Il lato oscuro</h3>
+  <div class="griglia">
+    <div class="carta"><span class="tag ill">Illegale</span><h3>Colpi</h3><p>Negozi, gioielleria, banche, case, furgoni portavalori. Serve un piano, e serve che la polizia sia in giro.</p></div>
+    <div class="carta"><span class="tag ill">Illegale</span><h3>Il Contatto</h3><p>Qualcuno in città compra e vende cose che non dovrebbe. Trovarlo è la prima prova.</p></div>
+    <div class="carta"><span class="tag ill">Illegale</span><h3>Hacking</h3><p>Telecamere, centraline, blackout. Più impari, più porte si aprono.</p></div>
+  </div>
+  <h3 style="margin-top:34px">Luoghi</h3>
+  <div class="griglia">
+    <div class="carta"><div class="ico">🚔</div><h3>Centrale di Mission Row</h3><p>Il cuore della legge.</p></div>
+    <div class="carta"><div class="ico">🏨</div><h3>Sunshine Plaza</h3><p>Hotel con piscina a Legion Square.</p></div>
+    <div class="carta"><div class="ico">🛏️</div><h3>Motel Pink Cage</h3><p>Stanze in affitto a settimana, chiave personale.</p></div>
+    <div class="carta"><div class="ico">🚗</div><h3>Concessionario</h3><p>A Little Seoul, con ascensore per le auto.</p></div>
+    <div class="carta"><div class="ico">🚇</div><h3>Metro</h3><p>Compra il biglietto alla macchinetta e attraversa la città.</p></div>
+    <div class="carta"><div class="ico">📱</div><h3>Il telefono</h3><p>Chat di gruppo, pagine gialle, Bigo Drop, numeri bloccati.</p></div>
+  </div>
+</div></section>
+
+<!-- CANDIDATURA -->
+<section id="v-candidatura"><div class="wrap">
+  <div class="sotto">Bassa Marea è su whitelist</div>
+  <h2>Candi<span>dati</span></h2>
+  <p>Compila il modulo. Alla fine ottieni il testo della tua candidatura: <b>copialo e incollalo nel canale #candidature</b> del nostro Discord. Lo staff ti risponde e ti fissa un breve colloquio vocale.</p>
+  <form id="modulo">
+    <div class="campi">
+      <div class="campo"><label>Nome Discord</label><input id="q_discord" placeholder="es. marco_rp" required></div>
+      <div class="campo"><label>Età reale</label><input id="q_eta" type="number" min="10" max="99" required></div>
+      <div class="campo largo"><label>Esperienza di roleplay</label><select id="q_esp"><option>Nessuna, è la prima volta</option><option>Qualche mese</option><option>Più di un anno</option><option>Più di tre anni</option></select></div>
+      <div class="campo largo"><label>Su quali server hai giocato?</label><input id="q_server" placeholder="Facoltativo"></div>
+      <div class="campo largo"><label>Cos'è il metagaming? Fai un esempio</label><textarea id="q1" required></textarea></div>
+      <div class="campo largo"><label>Ti puntano una pistola e ti chiedono il portafoglio. Cosa fai?</label><textarea id="q2" required></textarea></div>
+      <div class="campo largo"><label>Cosa succede al tuo personaggio dopo il coma?</label><textarea id="q3" required></textarea></div>
+      <div class="campo"><label>Nome del personaggio</label><input id="q_pg" required></div>
+      <div class="campo"><label>Cosa vuoi fare in città</label><input id="q_ruolo" placeholder="es. meccanico, poliziotto..." required></div>
+      <div class="campo largo"><label>Storia del personaggio (minimo 3 righe)</label><textarea id="q_storia" style="min-height:140px" required></textarea></div>
+      <div class="campo largo"><label><input type="checkbox" id="q_ok" style="width:auto;margin-right:8px">Ho letto e accetto il regolamento</label></div>
+    </div>
+    <div class="errore" id="errore"></div>
+    <button class="btn" type="submit">Prepara la candidatura</button>
+  </form>
+  <div id="esito" class="carta">
+    <h3>Ecco la tua candidatura</h3>
+    <p>Premi <b>Copia</b>, poi incollala nel canale <b>#candidature</b> su Discord.</p>
+    <pre id="testo"></pre>
+    <div class="bottoni"><button class="btn" id="copia">Copia</button><a class="btn vuoto" id="btn-discord2" href="#staff">Vai su Discord</a></div>
+    <p id="copiato" style="margin-top:12px;font-weight:800;color:var(--a)"></p>
+  </div>
+</div></section>
+
+<!-- STAFF -->
+<section id="v-staff"><div class="wrap">
+  <div class="sotto">Siamo qui per il gioco di tutti</div>
+  <h2>Staff e <span>FAQ</span></h2>
+  <div class="stato"><div class="pallino"></div><div><b style="color:var(--c)">Stato del server: in preparazione</b><br><span style="font-size:14px">Apertura al pubblico in arrivo. Segui gli annunci su Discord.</span></div></div>
+  <h3 style="margin-top:30px">Come contattarci</h3>
+  <div class="griglia">
+    <div class="carta"><div class="ico">🎫</div><h3>Ticket</h3><p>Segnalazioni, bug, cambio nome, richieste di permadeath: apri un ticket su Discord.</p></div>
+    <div class="carta"><div class="ico">💬</div><h3>Discord</h3><p id="discord-testo">Il link d'invito arriva a breve.</p></div>
+    <div class="carta"><div class="ico">🛡️</div><h3>Lo staff</h3><p>Fondatore, amministratori e moderatori. I nomi sono nel canale #staff di Discord.</p></div>
+  </div>
+  <h3 style="margin-top:30px">Domande frequenti</h3>
+  <details><summary>Come entro in città?</summary><p>Candidati da questo sito, incolla la candidatura su Discord e fai il colloquio. Dopo ricevi il ruolo "Cittadino" e puoi entrare.</p></details>
+  <details><summary>Posso fare il poliziotto o il medico da subito?</summary><p>Prima entri come cittadino. I lavori pubblici hanno candidature interne, con colloquio in gioco.</p></details>
+  <details><summary>Ci sono comandi per fare le cose?</summary><p>No. Tutto si fa guardando oggetti e persone con l'occhiolino. Il telefono e l'inventario fanno il resto.</p></details>
+  <details><summary>Perché non ci sono i puntini sulla mappa?</summary><p>Perché i posti si imparano, come in una città vera. Chiedi in giro, compra il giornale, prendi la metro.</p></details>
+  <details><summary>Quanti anni devo avere?</summary><p>Almeno 16 anni. Al colloquio lo staff valuta anche la maturità nel gioco.</p></details>
+</div></section>
+
+<footer><div class="wrap">Bassa Marea RP · Server FiveM italiano · Non affiliato a Rockstar Games o Cfx.re</div></footer>
+
+<script>
+// ====== Link Discord: quando lo hai, mettilo qui ======
+const DISCORD = '';
+if (DISCORD) {
+  ['btn-discord', 'btn-discord2'].forEach(i => { const a = document.getElementById(i); a.href = DISCORD; a.target = '_blank'; a.rel = 'noopener'; });
+  document.getElementById('discord-testo').innerHTML = 'Annunci, candidature e ticket: <a href="' + DISCORD + '" target="_blank" rel="noopener">entra qui</a>.';
+}
+// ====== Navigazione ======
+const VISTE = ['home', 'regolamento', 'citta', 'candidatura', 'staff'];
+function mostra() {
+  const v = VISTE.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  VISTE.forEach(x => document.getElementById('v-' + x).classList.toggle('on', x === v));
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + v));
+  document.getElementById('nav').classList.remove('aperto');
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', mostra); mostra();
+document.getElementById('menu').onclick = () => document.getElementById('nav').classList.toggle('aperto');
+document.querySelectorAll('.indice a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.getElementById(a.dataset.cap).scrollIntoView({ behavior: 'smooth' }); }));
+// ====== Candidatura ======
+const v = id => document.getElementById(id).value.trim();
+document.getElementById('modulo').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = document.getElementById('errore');
+  if (!document.getElementById('q_ok').checked) { err.textContent = 'Devi accettare il regolamento.'; return; }
+  if (+v('q_eta') < 16) { err.textContent = 'Per entrare servono almeno 16 anni.'; return; }
+  if (v('q_storia').split(/\n|\. /).filter(Boolean).length < 3 && v('q_storia').length < 180) { err.textContent = 'La storia è troppo corta: scrivi almeno 3 righe.'; return; }
+  err.textContent = '';
+  const t = `📝 CANDIDATURA – BASSA MAREA RP
+Discord: ${v('q_discord')}
+Età: ${v('q_eta')}
+Esperienza: ${v('q_esp')}
+Server precedenti: ${v('q_server') || '—'}
+
+❓ Cos'è il metagaming?
+${v('q1')}
+
+❓ Pistola puntata, ti chiedono il portafoglio:
+${v('q2')}
+
+❓ Dopo il coma:
+${v('q3')}
+
+👤 Personaggio: ${v('q_pg')}
+🎯 Cosa vuole fare: ${v('q_ruolo')}
+📖 Storia:
+${v('q_storia')}
+
+✅ Ho letto e accetto il regolamento.`;
+  document.getElementById('testo').textContent = t;
+  document.getElementById('esito').style.display = 'block';
+  document.getElementById('esito').scrollIntoView({ behavior: 'smooth' });
+});
+document.getElementById('copia').onclick = async () => {
+  const out = document.getElementById('copiato');
+  try { await navigator.clipboard.writeText(document.getElementById('testo').textContent); out.textContent = 'Copiata! Ora incollala su Discord.'; }
+  catch (_) {
+    const r = document.createRange(); r.selectNodeContents(document.getElementById('testo'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    out.textContent = 'Ho selezionato il testo: premi Ctrl+C per copiarlo.';
+  }
+};
+</script>
+</body>
+</html>
